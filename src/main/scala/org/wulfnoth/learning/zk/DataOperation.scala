@@ -7,10 +7,13 @@ import scala.language.postfixOps
 
 object DataOperation {
   def main(args: Array[String]): Unit = {
-    val client = CuratorFrameworkFactory newClient ("192.168.12.147:2181", new ExponentialBackoffRetry(1000 ,3))
-    client.start()
+    val prin = "罚金(人民币)?(.*)元".r
 
-    client delete() deletingChildrenIfNeeded() forPath "/ycj"
-    client.close()
+    val value = "罚金人民币一百五十万元"
+
+	  value match {
+		  case prin(_, money) => println(money)
+		  case _ => println(value)
+	  }
   }
 }

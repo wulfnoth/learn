@@ -20,8 +20,7 @@ import java.util.Arrays;
  * that allows adding/updating/removed nodes in a path. A PathChildrenCache keeps a
  * cache of these changes and outputs when updates occurs.
  */
-public class PathCacheExample
-{
+public class PathCacheExample {
     private static final String PATH = "/example/cache";
 
     public static void main(String[] args) throws Exception {
@@ -54,7 +53,7 @@ public class PathCacheExample
                     break;
                 }
                 case CHILD_UPDATED: {
-                    System.out.println("Node changed: " + ZKPaths.getNodeFromPath(event.getData().getPath()));
+                    System.out.println("Node changed: " + new String(event.getData().getData()));
                     break;
                 }
                 case CHILD_REMOVED:{

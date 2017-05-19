@@ -19,8 +19,7 @@ public class ExampleClient extends LeaderSelectorListenerAdapter implements Clos
     private final LeaderSelector leaderSelector;
     private final AtomicInteger leaderCount = new AtomicInteger();
 
-    public ExampleClient(CuratorFramework client, String path, String name)
-    {
+    public ExampleClient(CuratorFramework client, String path, String name) {
         this.name = name;
 
         // create a leader selector using the given path for management
@@ -50,21 +49,16 @@ public class ExampleClient extends LeaderSelectorListenerAdapter implements Clos
     {
         // we are now the leader. This method should not return until we want to relinquish leadership
 
-        final int         waitSeconds = (int)(5 * Math.random()) + 1;
+        final int waitSeconds = (int)(5 * Math.random()) + 1;
 
         System.out.println(name + " is now the leader. Waiting " + waitSeconds + " seconds...");
         System.out.println(name + " has been leader " + leaderCount.getAndIncrement() + " time(s) before.");
-        try
-        {
+        try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(waitSeconds));
-        }
-        catch ( InterruptedException e )
-        {
+        } catch ( InterruptedException e ) {
             System.err.println(name + " was interrupted.");
             Thread.currentThread().interrupt();
-        }
-        finally
-        {
+        } finally {
             System.out.println(name + " relinquishing leadership.\n");
         }
     }
